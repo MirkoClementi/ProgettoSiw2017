@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import it.uniroma3.artGallery.model.Artist;
 import it.uniroma3.artGallery.model.Painting;
 import it.uniroma3.artGallery.service.ArtistService;
 import it.uniroma3.artGallery.service.PaintingService;
@@ -20,8 +22,8 @@ public class PaintingController {
 	private ArtistService artistService;
 	
 	@GetMapping("/painting")
-	public String showFormPainting(Painting painting){
-		//model.addAttribute(this.artistService.findAll());
+	public String showFormPainting(Painting painting , Model model){
+		model.addAttribute("artists", this.artistService.findAll());
 			return "formpainting";
 	}
 	
@@ -37,6 +39,24 @@ public class PaintingController {
 			model.addAttribute(painting);
 			paintingService.add(painting); 
 		}
+		return "showpainting";
+	}
+	
+	@GetMapping("/paintingCatalog")
+	public String showArtistCatalog(Painting painting , Model model) {
+		model.addAttribute("paintings", this.paintingService.findAll());
+		return "paintingcatalog";
+	}
+	
+	@PostMapping("/updatePainting")
+	public String updatePainting() {
+		//TODO
+		return "showpainting";
+	}
+	
+	@PostMapping("/deletePainting")
+	public String deletePainting() {
+		//TODO
 		return "showpainting";
 	}
 }

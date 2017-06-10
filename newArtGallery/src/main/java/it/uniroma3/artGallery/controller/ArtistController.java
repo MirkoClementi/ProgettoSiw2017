@@ -34,4 +34,22 @@ public class ArtistController {
 		}
 		return "showartist";
 	}
+	
+	@GetMapping("/artistCatalog")
+	public String showArtistCatalog(Artist artist , Model model) {
+		model.addAttribute("artists", this.artistService.findAll());
+		return "artistcatalog";
+	}
+	
+	@PostMapping("/updateArtist")
+	public String updateArtist() {
+		//TODO
+		return "showartist";
+	}
+	
+	@PostMapping("/deleteArtist")
+	public String deleteArtist() {
+		//TODO
+		return "showartist";
+	}
 }

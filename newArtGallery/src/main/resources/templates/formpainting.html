@@ -15,7 +15,7 @@
 			<div>
 				<span th:text="#{label.year}">Year: </span>
 				<span> <input type="text" th:field="*{year}" /> </span> 
-				<span th:if="${#fields.hasErrors('year')}" th:text="#{label.mandatory}">Error </span>
+				<span th:if="${#fields.hasErrors('year')}" th:text="#{label.number}">Error </span>
 			</div>
 			<div>
 				<span th:text="#{label.technique}">Technique: </span> 
@@ -26,6 +26,13 @@
 				<span th:text="#{label.dimension}">Dimension: </span> 
 				<span> <input type="text" th:field="*{dimension}" /></span> 
 				<span th:if="${#fields.hasErrors('dimension')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<select name="artistId">
+					<tr th:each="artist  : ${artists}">
+						<option value="${artist.id" th:text="${artist.firstName} + ' ' + ${artist.lastName} "> </option>
+					</tr>
+				</select>
 			</div>
 			<div>
 				<span><button type="submit">Submit </button> </span>

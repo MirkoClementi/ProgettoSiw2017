@@ -25,12 +25,12 @@
 			<div>
 				<span th:text="#{label.birthDate}">Birth Date </span> 
 				<span> <input type="text" th:field="*{birthDate}" /></span> 
-				<span th:if="${#fields.hasErrors('birthDate')}" th:text="#{label.mandatory}">Error </span>
+				<span th:if="${#fields.hasErrors('birthDate')}" th:text="#{label.date}">Error </span>
 			</div>
 			<div>
 				<span th:text="#{label.deadDate}">Dead Date </span> 
 				<span> <input type="text" th:field="*{deadDate}" /></span> 
-				<span th:if="${#fields.hasErrors('deadDate')}" th:text="#{label.mandatory}">Error </span>
+				<span th:if="${#fields.hasErrors('deadDate')}" th:text="#{label.date}">Error </span>
 			</div>
 			<div>
 				<span><button type="submit">Submit </button> </span>

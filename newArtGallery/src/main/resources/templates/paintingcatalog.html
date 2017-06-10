@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Painting Catalog</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<div>
+		<ul>
+			<tr th:each="painting  : ${paintings}">
+				<td><span th:text="${painting.title}"></span><br /></td>
+
+				<form action="#" th:action="@{/updatePainting}" method="post">
+					<input type="hidden" name="idPainting" th:value="${painting.id}" /> 
+					<input type="submit" name="submit" value="Update"> </input>
+				</form>
+
+				<form action="#" th:action="@{/deletePainting}" method="post">
+					<input type="hidden" name="idPainting" th:value="${painting.id}" /> 
+					<input type="submit" name="submit" value="Delete"> </input>
+				</form>
+			</tr>
+		</ul>
+	</div>
+</body>
+</html>
