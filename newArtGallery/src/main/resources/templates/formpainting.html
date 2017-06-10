@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Painting</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" th:action="@{/painting}" th:object="${painting}" method="post">
+		<div>
+			<div>
+				<span th:text="#{label.title}">Title: </span> 
+				<span> <input type="text" th:field="*{title}" /> </span> 
+				<span th:if="${#fields.hasErrors('title')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.year}">Year: </span>
+				<span> <input type="text" th:field="*{year}" /> </span> 
+				<span th:if="${#fields.hasErrors('year')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.technique}">Technique: </span> 
+				<span> <input type="text" th:field="*{technique}" /></span> 
+				<span th:if="${#fields.hasErrors('technique')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.dimension}">Dimension: </span> 
+				<span> <input type="text" th:field="*{dimension}" /></span> 
+				<span th:if="${#fields.hasErrors('dimension')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span><button type="submit">Submit </button> </span>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
