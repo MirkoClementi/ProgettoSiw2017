@@ -23,6 +23,17 @@ public class ArtistService {
 	public Artist findbyId(Long id) {
 		return this.artistRepository.findOne(id);
 	}
-
+	
+	 @Transactional
+	public void delete(Artist artist){
+		this.artistRepository.delete(artist);
+	}
+	
+	 @Transactional
+	public Artist update(Artist artist, Long id){
+		Artist a = this.artistRepository.findOne(id);
+		a.setAll(artist);
+		return a;
+	}
 }
 

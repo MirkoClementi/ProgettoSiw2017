@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form Update Artist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<form action="#" th:action="@{/updateArtist}" th:object="${artist}" method="post">
+		<div>
+			<div>
+			<input type="hidden" name="idArtist" th:value="${artist.id}" /> 
+			</div>
+			<div>
+				<span th:text="#{label.firstName}">Name: </span> 
+				<span> <input type="text" th:field="*{firstName}" /> </span> 
+				<span th:if="${#fields.hasErrors('firstName')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.lastName}">Last name: </span>
+				<span> <input type="text" th:field="*{lastName}" /> </span> 
+				<span th:if="${#fields.hasErrors('lastName')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.nationality}">Nationality: </span> 
+				<span> <input type="text" th:field="*{nationality}" /></span> 
+				<span th:if="${#fields.hasErrors('nationality')}" th:text="#{label.mandatory}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.birthDate}">Birth Date </span> 
+				<span> <input type="text" th:field="*{birthDate}" /></span> 
+				<span th:if="${#fields.hasErrors('birthDate')}" th:text="#{label.date}">Error </span>
+			</div>
+			<div>
+				<span th:text="#{label.deadDate}">Dead Date </span> 
+				<span> <input type="text" th:field="*{deadDate}" /></span> 
+				<span th:if="${#fields.hasErrors('deadDate')}" th:text="#{label.date}">Error </span>
+			</div>
+			<div>
+				<span><button type="submit">Submit </button> </span>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

@@ -114,5 +114,12 @@ public class Artist {
 	public void setPaintings(List<Painting> paintings) {
 		this.paintings = paintings;
 	}
-
+	
+	public void setAll(Artist artist){
+		this.firstName = artist.getFirstName();
+		this.lastName = artist.getLastName();
+		this.nationality = artist.getNationality();
+		this.birthDate = artist.getBirthDate();
+		this.deadDate = artist.getDeadDate();
+	}
 }

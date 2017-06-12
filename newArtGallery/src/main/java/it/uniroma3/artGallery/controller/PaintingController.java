@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.artGallery.model.Artist;
 import it.uniroma3.artGallery.model.Painting;
@@ -48,16 +49,29 @@ public class PaintingController {
 		return "paintingcatalog";
 	}
 	
+	@GetMapping("/updatePainting")
+	public String showFormUpdatePainting(@RequestParam("idPainting") Long id,Painting painting,Model model) {
+		model.addAttribute(paintingService.findbyId(id));
+		return "formupdatepainting";
+	}
+	
 	@PostMapping("/updatePainting")
-	public String updatePainting() {
-		//TODO
+	public String updatePainting(@Valid @ModelAttribute Painting painting,@RequestParam("idPainting") Long id, 
+			BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "formupdatepainting";
+		}
+		else {
+			model.addAttribute(paintingService.update(painting, id));
+		}
 		return "showpainting";
 	}
 	
 	@PostMapping("/deletePainting")
-	public String deletePainting() {
-		//TODO
-		return "showpainting";
+	public String deletePainting(@RequestParam("idPaintingD") Long id,Model model) {
+		paintingService.delete(paintingService.findbyId(id));
+		model.addAttribute("paintings", this.paintingService.findAll());
+		return "paintingcatalog";
 	}
 }
 

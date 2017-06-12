@@ -102,5 +102,10 @@ public class Painting {
 		this.artist = artist;
 	}
 
-	
+	public void setAll(Painting painting){
+		this.title = painting.getTitle();
+		this.year = painting.getYear();
+		this.technique = painting.getTechnique();
+		this.dimension = painting.getDimension();
+	}
 }

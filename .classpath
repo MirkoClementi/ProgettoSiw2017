@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="it/uniroma3/artGallery/security/" kind="src" path="newArtGallery/src/main/java"/>
+	<classpathentry kind="src" path="newArtGallery/src/main/java/it/uniroma3/artGallery/security"/>
+	<classpathentry kind="src" path="newArtGallery/src/test/java"/>
+	<classpathentry kind="lib" path="newArtGallery/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

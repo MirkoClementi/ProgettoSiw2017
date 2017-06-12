@@ -8,6 +8,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import it.uniroma3.artGallery.model.Artist;
 import it.uniroma3.artGallery.service.ArtistService;
 
@@ -41,15 +43,29 @@ public class ArtistController {
 		return "artistcatalog";
 	}
 	
+	@GetMapping("/updateArtist")
+	public String showFormUpdateArtist(@RequestParam("idArtist") Long id,Artist artist,Model model) {
+		model.addAttribute(artistService.findbyId(id));
+		return "formupdateartist";
+	}
+	
 	@PostMapping("/updateArtist")
-	public String updateArtist() {
-		//TODO
+	public String updateArtist(@Valid @ModelAttribute Artist artist,@RequestParam("idArtist") Long id, 
+			BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "formupdateartist";
+		}
+		else {
+			Artist nuovo = artistService.update(artist,id);
+			model.addAttribute(nuovo);
+		}
 		return "showartist";
 	}
 	
 	@PostMapping("/deleteArtist")
-	public String deleteArtist() {
-		//TODO
-		return "showartist";
+	public String deleteArtist(@RequestParam("idArtistD") Long id,Model model) {
+		artistService.delete(artistService.findbyId(id));
+		model.addAttribute("artists", this.artistService.findAll());
+		return "artistcatalog";
 	}
 }
