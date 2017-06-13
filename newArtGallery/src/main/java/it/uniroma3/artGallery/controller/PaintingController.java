@@ -34,6 +34,7 @@ public class PaintingController {
 			BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("artists", this.artistService.findAll());
 			return "formpainting";
 		}
 		else {

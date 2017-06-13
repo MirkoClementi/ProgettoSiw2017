@@ -3,28 +3,33 @@
 <head>
 	<title>Artist Catalog</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="css/viewstyle.css" rel="stylesheet"> </link>
 </head>
 <body>
-	<div>
+<div >
+    <h3> Catalogo Artista </h3>
+</div>  
+<div class="home">
+		<a href="/index.html"> <img src="img/home.png" width="50" height="50"></img></a>
+</div>
+	<div class="div-data">
 		<ul>
 			<tr th:each="artist  : ${artists}">
-				<td><span th:text="${artist.firstName}+ ' ' + ${artist.lastName}"></span> 
-				</td>
+			<li>
+				<td><span th:text="${artist.firstName}+ ' ' + ${artist.lastName}"></span>  </td>
 
-				<form action="#" th:action="@{/updateArtist}" method="get">
+				<form class="buttons" action="#" th:action="@{/updateArtist}" method="get">
 					<input type="hidden" name="idArtist" th:value="${artist.id}" /> 
 					<input type="submit" name="submit" value="Update"> </input>
 				</form>
 
-				<form action="#" th:action="@{/deleteArtist}" method="post">
+				<form class="buttons" action="#" th:action="@{/deleteArtist}" method="post">
 					<input type="hidden" name="idArtistD" th:value="${artist.id}" /> 
 					<input type="submit" name="submit" value="Delete"> </input>
 				</form>
+			</li>
 			</tr>
 		</ul>
-	</div>
-	<div class="home">
-		<a href="/index.html"> Home</a>
 	</div>
 </body>
 </html>
