@@ -18,6 +18,7 @@ public class ArtistController {
 	@Autowired
 	private ArtistService artistService;
 
+// Inserimento nuovo artista -------------------------------------------------
 	@GetMapping("/artist")
 	public String showFormArtist(Artist artist) {
 		return "formartist";
@@ -36,13 +37,17 @@ public class ArtistController {
 		}
 		return "showartist";
 	}
-	
+//-------------------------------------------------------------------------------
+
+//Lista di tutti gli artisti ----------------------------------------------------
 	@GetMapping("/artistCatalog")
 	public String showArtistCatalog(Artist artist , Model model) {
 		model.addAttribute("artists", this.artistService.findAll());
 		return "artistcatalog";
 	}
+//-------------------------------------------------------------------------------
 	
+//Aggiornamento dati artista ----------------------------------------------------
 	@GetMapping("/updateArtist")
 	public String showFormUpdateArtist(@RequestParam("idArtist") Long id,Artist artist,Model model) {
 		model.addAttribute(artistService.findbyId(id));
@@ -56,16 +61,18 @@ public class ArtistController {
 			return "formupdateartist";
 		}
 		else {
-			Artist nuovo = artistService.update(artist,id);
-			model.addAttribute(nuovo);
+			model.addAttribute(artistService.update(artist,id));
 		}
 		return "showartist";
 	}
+//----------------------------------------------------------------------------------
 	
+//Cancellazione artista ------------------------------------------------------------
 	@PostMapping("/deleteArtist")
 	public String deleteArtist(@RequestParam("idArtistD") Long id,Model model) {
 		artistService.delete(artistService.findbyId(id));
 		model.addAttribute("artists", this.artistService.findAll());
 		return "artistcatalog";
 	}
+//-----------------------------------------------------------------------------------
 }

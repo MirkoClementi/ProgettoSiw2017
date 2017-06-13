@@ -22,12 +22,12 @@ public class PaintingController {
 	@Autowired
 	private ArtistService artistService;
 	
+// Inserimento nuovo quadro ----------------------------------------------------
 	@GetMapping("/painting")
 	public String showFormPainting(Painting painting , Model model){
 		model.addAttribute("artists", this.artistService.findAll());
 			return "formpainting";
 	}
-	
 	
 	@PostMapping("/painting")
 	public String checkPainting(@Valid @ModelAttribute Painting painting, 
@@ -42,13 +42,17 @@ public class PaintingController {
 		}
 		return "showpainting";
 	}
+//-------------------------------------------------------------------------------
 	
+//Lista di tutti i quadri -------------------------------------------------------
 	@GetMapping("/paintingCatalog")
 	public String showArtistCatalog(Painting painting , Model model) {
 		model.addAttribute("paintings", this.paintingService.findAll());
 		return "paintingcatalog";
 	}
+//--------------------------------------------------------------------------------
 	
+//Aggiornamento dati quadro ------------------------------------------------------
 	@GetMapping("/updatePainting")
 	public String showFormUpdatePainting(@RequestParam("idPainting") Long id,Painting painting,Model model) {
 		model.addAttribute(paintingService.findbyId(id));
@@ -66,7 +70,9 @@ public class PaintingController {
 		}
 		return "showpainting";
 	}
+//---------------------------------------------------------------------------------
 	
+//Cancellazione quadro ------------------------------------------------------------
 	@PostMapping("/deletePainting")
 	public String deletePainting(@RequestParam("idPaintingD") Long id,Model model) {
 		paintingService.delete(paintingService.findbyId(id));
