@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+    <!-- BEGIN HEAD -->
+    <head>
+        <meta charset="utf-8"/>
+        <title>Painting</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport"/>
+        <meta content="" name="description"/>
+        <meta content="" name="author"/>
+
+        <!-- GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
+        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"/>
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+        <!-- PAGE LEVEL PLUGIN STYLES -->
+        <link href="css/animate.css" rel="stylesheet">
+
+        <!-- THEME STYLES -->
+        <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+    </head>
+    <!-- END HEAD -->
+
+    <!-- BODY -->
+    <body id="body" data-spy="scroll" data-target=".header">
+        
+        <!--========== HEADER ==========-->
+        <header class="header navbar-fixed-top">
+            <!-- Navbar -->
+            <nav class="navbar" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="menu-container js_nav-item">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="toggle-icon"></span>
+                        </button>
+
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a class="logo-wrap" href="#body">
+                                <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo">
+                                <img class="logo-img logo-img-active" src="img/logo-dark.png" alt="Asentus Logo">
+                            </a>
+                        </div>
+                        <!-- End Logo -->
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse nav-collapse">
+                        <div class="menu-container">
+                            <ul class="nav navbar-nav navbar-nav-right">
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="index.html#body">Home</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="index.html#about">About</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="index.html#contact">Contact Us</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="painting.html">Painting</a></li>
+                                <li class="js_nav-item nav-item"><a class="nav-item-child nav-item-hover" href="artist.html">Artist</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- End Navbar Collapse -->
+                </div>
+            </nav>
+            <!-- Navbar -->
+        </header>
+        <!--========== END HEADER ==========-->
+
+        <!--========== SLIDER ==========-->
+        <div class="promo-block parallax-window" data-parallax="scroll" data-image-src="img/1920x1080/01.jpg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="promo-block-divider">
+                            <h1 class="promo-block-title">New Art Gallery</h1>
+                            <p class="promo-block-text">Browse your painting</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--// end row -->
+            </div>
+        </div>
+        <!-- ========== FILTERS ========-->
+        <div class="content-painting" ng-app="myApp" ng-controller="myCtrl">
+            <div class="filter-box-container" >
+                <div class="search-divider"> 
+                    <!-- @ToDo filter for paint's name|| artist's name -->
+                    <input class="input-filter" type="text" name="nametitle-filter" id="nametitle-filter" placeholder="Search for Artist or title..." ng-model="NameTitleFilter">
+                </div>
+                <div class="filter-row-type">
+                    <h5>Technique</h5>
+                    <div class="filter-col" ng-repeat="pic in paintingsArrayTech| unique:'technique' "> 
+                        <!-- @ToDo Inserire le varie tecniche -->
+                        <input type="checkbox" value="technique" ng-model="pic.on"  ng-change="checkChange()" > {{pic.technique}}<br>
+                    </div>
+                </div>
+                <div class="filter-row-type">
+                    <h5>Size</h5>
+                    <div class="filter-col" ng-repeat="pic in paintingsArraySize | unique:'dimension' ">   
+                        <!-- @ToDo Inserire le varie dimensioni -->
+                        <input type="checkbox" value="dimension" ng-model="pic.on"  ng-change="checkChange()" > {{pic.dimension}}<br>
+                    </div>
+                </div>
+                <div class="filter-row-type">
+                    <h5>Year</h5>
+                    <div class="filter-col" ng-repeat="pic in paintingsArrayAge | unique:'year'" >
+                        <!-- @ToDo Inserire le varie epoche -->
+                        <input type="checkbox" value="year" ng-model="pic.on"  ng-change="checkChange()" > {{pic.year}}<br>  
+                    </div>
+                </div>
+            </div>
+            <!--============= GALLERY ========-->
+            <div class="painting-container" > 
+                <div class="work work-popup-trigger" ng-repeat="paints in paintings | filter:myFilterSize|filter:myFilterTech | filter:stringFilter" >
+                    <img class="pics" src="{{paints.picture}}"  />
+            <!--============= POPUP ========-->
+                    <div class="work-popup-overlay">
+                        <div class="work-popup-content">
+                            <a href="javascript:void(0);" class="work-popup-close">Hide</a>
+                            <div class="margin-b-30">
+                                <h3 class="margin-b-5">js.getPaintingName()</h3>
+                            </div>
+                            <img class="pics-full-width" src="{{paints.picture}}" >
+                            <div class="work-popup-content-divider">
+                                <!--@ToDo redirect on artistNamePopup -->     
+                                <p class="margin-b-5"><strong> Artist:</strong><a href="artist.html"> js.getArtistName()</a></p>
+                                <p class="margin-b-5"><strong> Pubblication Date:</strong> js.getPubblicationDate()</p>
+                                <p class="margin-b-5"><strong> Technique:</strong> js.getTechnique()</p>
+                                <p class="margin-b-5"><strong> Dimension:</strong> js.getDimension()</p>
+                                <p class="margin-b-5"><strong> Style:</strong> js.getStyle()</p>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Filters-->
+        <!--========== FOOTER ==========-->
+     <footer class="footer">
+            <div class="content container">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <img class="footer-logo" src="img/logo-dark.png" alt="Aircv Logo">
+                    </div>
+                    <div class="col-xs-6 text-right sm-text-left">
+                        <p class="margin-b-0">New Art Gallery Theme Designed&amp;Developed by: <a class="fweight-700" href="http://www.elbombdeveloper.it/">elbombdeveloper</a></p>
+                    </div>
+                </div>
+                <!--// end row -->
+            </div>
+        </footer>
+        <!--========== END FOOTER ==========-->
+
+        <!-- Back To Top -->
+        <a href="javascript:void(0);" class="js-back-to-top back-to-top">Top</a>
+
+        <!-- JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+        <!-- CORE PLUGINS -->
+        <script src="vendor/jquery.min.js" type="text/javascript"></script>
+        <script src="vendor/jquery-migrate.min.js" type="text/javascript"></script>
+        <script src="vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+        <!-- PAGE LEVEL PLUGINS -->
+        <script src="vendor/jquery.easing.js" type="text/javascript"></script>
+        <script src="vendor/jquery.back-to-top.js" type="text/javascript"></script>
+        <script src="vendor/jquery.smooth-scroll.js" type="text/javascript"></script>
+        <script src="vendor/jquery.wow.min.js" type="text/javascript"></script>
+        <script src="vendor/jquery.parallax.min.js" type="text/javascript"></script>
+        <script src="vendor/jquery.appear.js" type="text/javascript"></script>
+        <script src="vendor/masonry/jquery.masonry.pkgd.min.js" type="text/javascript"></script>
+        <script src="vendor/masonry/imagesloaded.pkgd.min.js" type="text/javascript"></script>
+
+        <!-- PAGE LEVEL SCRIPTS -->
+        <script src="js/layout.min.js" type="text/javascript"></script>
+        <script src="js/components/progress-bar.min.js" type="text/javascript"></script>
+        <script src="js/components/masonry.min.js" type="text/javascript"></script>
+        <script src="js/components/wow.min.js" type="text/javascript"></script>
+        
+        <script src="js/components/trial-filter.js" type="text/javascript"></script>
+    </body>
+    <!-- END BODY -->
+</html>
