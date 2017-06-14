@@ -16,7 +16,7 @@
 		<ul>
 			<tr th:each="painting  : ${paintings}">
 			<li>
-				<td><span th:text="${painting.title}" ></span>> </td>
+				<td><span th:text="${painting.title}" ></span> </td>
 
 				<form class="buttons" action="#" th:action="@{/updatePainting}" method="get">
 					<input type="hidden" name="idPainting" th:value="${painting.id}" /> 

@@ -13,6 +13,7 @@ public class MainController {
   public String login() {
     return "login";
   }
+ 
 
   // Login form with error
   @RequestMapping("/login-error.html")

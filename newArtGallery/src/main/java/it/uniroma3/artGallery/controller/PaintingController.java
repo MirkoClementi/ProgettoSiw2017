@@ -1,5 +1,7 @@
 package it.uniroma3.artGallery.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,9 +26,17 @@ public class PaintingController {
 	
 // Inserimento nuovo quadro ----------------------------------------------------
 	@GetMapping("/painting")
-	public String showFormPainting(Painting painting , Model model){
-		model.addAttribute("artists", this.artistService.findAll());
-			return "formpainting";
+	public String showFormPainting(Painting painting ,Artist artist, Model model){
+		List<Artist> artists = (List<Artist>) this.artistService.findAll();
+		if (!artists.isEmpty()){
+				model.addAttribute("artists", artists);
+				return "formpainting";
+		}
+		else{
+			String stringErr ="Devi prima inserire un artista";
+			model.addAttribute("artistsErr", stringErr);
+			return "formartist";
+		}
 	}
 	
 	@PostMapping("/painting")
