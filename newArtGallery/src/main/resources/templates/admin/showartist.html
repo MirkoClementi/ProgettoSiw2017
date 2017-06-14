@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Show Artist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="css/viewstyle.css" rel="stylesheet"> </link>
+</head>
+<body>
+<div >
+    <h3> Dati Artista </h3>
+</div>  
+<div class="home">
+		<a href="/index.html"> <img src="img/home.png" width="50" height="50"></img></a>
+</div>
+<div class="div-data">
+	<div>
+		<p th:text="'First name: ' + ${artist.firstName}" />
+	</div>
+	<div>
+		<p th:text="'Lastname: ' + ${artist.lastName}" />
+	</div>
+	<div>
+		<p th:text="'Nationality: ' + ${artist.nationality}" />
+	</div>
+	<div>
+		<p th:text="'Birth Date: ' + ${artist.birthDate}" />
+	</div>
+	<div>
+		<p th:text="'Dead Date: ' + ${artist.deadDate}" />
+	</div>
+</div>
+</body>
+</html>
