@@ -3,29 +3,29 @@
 <head>
 	<title>Painting Catalog</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="css/viewstyle.css" rel="stylesheet"> </link>
+	<link href="css/viewstyle.css" rel="stylesheet"/> 
 </head>
 <body>
 <div >
     <h3> Catalogo Quadro </h3>
 </div>  
 <div class="home">
-		<a href="/index.html"> <img src="img/home.png" width="50" height="50"></img></a>
+		<a href="adminPanel"> <img src="img/home.png" width="50" height="50"/></a>
 </div>
 	<div class="div-data">
 		<ul>
 			<tr th:each="painting  : ${paintings}">
 			<li>
-				<td><span th:text="${painting.title}" ></span> </td>
-
+				<div class="label-name"> <td><span th:text="${painting.title}+ '['  + ${painting.artist.getFirstName()} + ' ' + ${painting.artist.getLastName()}  +']'" ></span> </td>
+				</div>
 				<form class="buttons" action="#" th:action="@{/updatePainting}" method="get">
 					<input type="hidden" name="idPainting" th:value="${painting.id}" /> 
-					<input type="submit" name="submit" value="Update"> </input>
+					<input type="submit" name="submit" value="Update"/>
 				</form>
 
 				<form class="buttons" action="#" th:action="@{/deletePainting}" method="post">
 					<input type="hidden" name="idPaintingD" th:value="${painting.id}" /> 
-					<input type="submit" name="submit" value="Delete"> </input>
+					<input type="submit" name="submit" value="Delete"/>
 				</form>
 			</li>
 			</tr>

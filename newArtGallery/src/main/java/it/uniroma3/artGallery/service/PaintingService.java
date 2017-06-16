@@ -1,10 +1,11 @@
 package it.uniroma3.artGallery.service;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import it.uniroma3.artGallery.model.Artist;
+import org.springframework.web.multipart.MultipartFile;
 import it.uniroma3.artGallery.model.Painting;
 import it.uniroma3.artGallery.repository.PaintingRepository;
 
@@ -18,7 +19,11 @@ public class PaintingService {
 	}
 
 	@Transactional
-	public void add(final Painting painting) {
+	public void add(final Painting painting, MultipartFile file) {
+		try {
+			painting.setPaintingPicture(file.getBytes());
+		} catch (IOException e) {
+		}
 		this.paintingRepository.save(painting);
 	}
 

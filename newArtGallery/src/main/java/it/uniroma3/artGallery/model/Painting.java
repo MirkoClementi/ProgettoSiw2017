@@ -6,13 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Painting {
@@ -38,10 +41,14 @@ public class Painting {
 	
 	private String dimension;
 	
-	private String picture;
+	@Lob
+	private byte[] paintingPicture;
 	
 	@ManyToOne
 	private Artist artist;
+	
+	@Transient
+    private MultipartFile file;
 	
 	public Painting(){
 	}
@@ -66,8 +73,8 @@ public class Painting {
 		return dimension;
 	}
 
-	public String getPicture() {
-		return picture;
+	public byte[] getPaintingPicture() {
+		return paintingPicture;
 	}
 
 	public Artist getArtist() {
@@ -94,14 +101,22 @@ public class Painting {
 		this.dimension = dimension;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setPaintingPicture(byte[] paintingPicture) {
+		this.paintingPicture = paintingPicture;
 	}
-
+	
 	public void setArtist(Artist artist) {
 		this.artist = artist;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	
 	public void setAll(Painting painting){
 		this.title = painting.getTitle();
 		this.year = painting.getYear();

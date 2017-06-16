@@ -3,14 +3,14 @@
 <head>
     <title>Show Painting</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/viewstyle.css" rel="stylesheet"> </link>
+    <link href="css/viewstyle.css" rel="stylesheet"/>
 </head>
 <body>
 <div >
     <h3> Dati Quadro </h3>
 </div>  
 <div class="home">
-		<a href="/index.html"> <img src="img/home.png" width="50" height="50"></img></a>
+		<a href="adminPanel"> <img src="img/home.png" width="50" height="50"/></a>
 </div>
 <div class="div-data">
 	<div>
@@ -24,6 +24,9 @@
 	</div>
 	<div>
 		<p th:text="'Dimension: ' + ${painting.dimension}" />
+	</div>
+	<div>
+	<p><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" width="150" height="150"/></p>
 	</div>
 </div>
 </body>

@@ -1,4 +1,5 @@
 package it.uniroma3.artGallery.model;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -6,13 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
+import javax.persistence.CascadeType;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Artist {
@@ -41,10 +45,14 @@ public class Artist {
 	@Temporal(TemporalType.DATE)
 	private Date deadDate;
 	
-	private String picture;
+	@Lob
+	private byte[] artistPicture;
 	
-	@OneToMany(mappedBy="artist")
+	@OneToMany(mappedBy="artist" , cascade= {CascadeType.REMOVE})
 	private List<Painting> paintings;
+	
+	@Transient
+    private MultipartFile file;
 	
 	public Artist(){
 		this.paintings = new ArrayList<>();
@@ -75,8 +83,8 @@ public class Artist {
 		return deadDate;
 	}
 
-	public String getPicture() {
-		return picture;
+	public byte[] getArtistPicture() {
+		return artistPicture;
 	}
 
 	public List<Painting> getPaintings() {
@@ -107,12 +115,20 @@ public class Artist {
 		this.deadDate = deadDate;
 	}
 
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setArtistPicture(byte[] artistPicture) {
+		this.artistPicture = artistPicture;
 	}
 
 	public void setPaintings(List<Painting> paintings) {
 		this.paintings = paintings;
+	}
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 	
 	public void setAll(Artist artist){

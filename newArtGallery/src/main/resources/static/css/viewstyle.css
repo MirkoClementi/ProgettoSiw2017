@@ -27,12 +27,21 @@ form{
     font-weight: bold;
 }
 
+.label-name {
+    padding: 7px;
+    width: 300px;
+    display: inline-block;
+    clear: left;
+    font-weight: bold;
+}
+
 input{
     border: 1px solid #C6CFE2;
     background: #F7FBFE;
     padding: 3px;
     text-align: center;
     font-weight: bold;
+    width: 15%;
 }
 
 li{

@@ -3,17 +3,17 @@
 <head>
     <title>Form Painting</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/viewstyle.css" rel="stylesheet"> </link>
+    <link href="css/viewstyle.css" rel="stylesheet"/>
 </head>
 <body>
 <div >
     <h3> Inserisci Dati Nuovo Quadro </h3>
 </div>  
 <div class="home">
-		<a href="/index.html"> <img src="img/home.png" width="50" height="50"></img></a>
+		<a href="adminPanel"> <img src="img/home.png" width="50" height="50"/></a>
 </div>
 <div class="div-form">
-	<form action="#" th:action="@{/painting}" th:object="${painting}" method="post">
+	<form action="#" th:action="@{/insertPainting}" th:object="${painting}" method="post" enctype="multipart/form-data">
 		<div>
 			<div>
 				<div class="label"><span th:text="#{label.title}">Title: </span> </div>
@@ -37,11 +37,14 @@
 			</div>
 			<div>
 				<div class="label"><span th:text="#{label.artist}">Artist: </span> </div>
-				<select name="artistId">
-					<tr th:each="artist  : ${artists}">
-						<option value="${artist.id" th:text="${artist.firstName} + ' ' + ${artist.lastName} "> </option>
-					</tr>
+				<select th:field="*{artist}">
+					<option th:each="artist : ${artists}" th:value="${artist.id}" th:text="${artist.firstName} + ' ' + ${artist.lastName} "></option>					
 				</select>
+			</div>
+			<div>
+				<div class="label"><span th:text="#{label.paintingPicture}">Picture:</span></div>
+				<span><input type="file" th:field="*{file}"/></span>
+				<span th:if="${#fields.hasErrors('paintingPicture')}" th:text="#{label.mandatory}">Errore</span>
 			</div>
 			<div class="div-button">
 				<span><button type="submit">Submit </button> </span>

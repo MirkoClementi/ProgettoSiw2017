@@ -4,24 +4,24 @@
     <head>
         <meta charset="utf-8"/>
         <title>Painting</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
         <meta content="" name="description"/>
         <meta content="" name="author"/>
 
         <!-- GLOBAL MANDATORY STYLES -->
-        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css">
-        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css"/>
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="http://fonts.googleapis.com/css?family=Hind:300,400,500,600,700" rel="stylesheet" type="text/css"/> 
+        <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css" />
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> 
 
         <!-- PAGE LEVEL PLUGIN STYLES -->
-        <link href="css/animate.css" rel="stylesheet">
+        <link href="css/animate.css" rel="stylesheet"/> 
 
         <!-- THEME STYLES -->
-        <link href="css/layout.css" rel="stylesheet" type="text/css"/>
+        <link href="css/layout.css" rel="stylesheet" type="text/css"/> 
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="shortcut icon" href="favicon.ico"/> 
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
     </head>
@@ -45,8 +45,8 @@
                         <!-- Logo -->
                         <div class="logo">
                             <a class="logo-wrap" href="#body">
-                                <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo">
-                                <img class="logo-img logo-img-active" src="img/logo-dark.png" alt="Asentus Logo">
+                                <img class="logo-img logo-img-main" src="img/logo.png" alt="Asentus Logo"/>
+                                <img class="logo-img logo-img-active" src="img/logo-dark.png" alt="Asentus Logo"/>
                             </a>
                         </div>
                         <!-- End Logo -->
@@ -91,27 +91,27 @@
             <div class="filter-box-container" >
                 <div class="search-divider"> 
                     <!-- @ToDo filter for paint's name|| artist's name -->
-                    <input class="input-filter" type="text" name="nametitle-filter" id="nametitle-filter" placeholder="Search for Artist or title..." ng-model="NameTitleFilter">
+                    <input class="input-filter" type="text" name="nametitle-filter" id="nametitle-filter" placeholder="Search for Artist or title..." ng-model="NameTitleFilter"/>
                 </div>
                 <div class="filter-row-type">
                     <h5>Technique</h5>
                     <div class="filter-col" ng-repeat="pic in paintingsArrayTech| unique:'technique' "> 
                         <!-- @ToDo Inserire le varie tecniche -->
-                        <input type="checkbox" value="technique" ng-model="pic.on"  ng-change="checkChange()" > {{pic.technique}}<br>
+                        <input type="checkbox" value="technique" ng-model="pic.on"  ng-change="checkChange()" /> {{pic.technique}}<br></br>
                     </div>
                 </div>
                 <div class="filter-row-type">
                     <h5>Size</h5>
                     <div class="filter-col" ng-repeat="pic in paintingsArraySize | unique:'dimension' ">   
                         <!-- @ToDo Inserire le varie dimensioni -->
-                        <input type="checkbox" value="dimension" ng-model="pic.on"  ng-change="checkChange()" > {{pic.dimension}}<br>
+                        <input type="checkbox" value="dimension" ng-model="pic.on"  ng-change="checkChange()" /> {{pic.dimension}}<br></br>
                     </div>
                 </div>
                 <div class="filter-row-type">
                     <h5>Year</h5>
                     <div class="filter-col" ng-repeat="pic in paintingsArrayAge | unique:'year'" >
                         <!-- @ToDo Inserire le varie epoche -->
-                        <input type="checkbox" value="year" ng-model="pic.on"  ng-change="checkChange()" > {{pic.year}}<br>  
+                        <input type="checkbox" value="year" ng-model="pic.on"  ng-change="checkChange()" /> {{pic.year}}<br>  </br>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                             <div class="margin-b-30">
                                 <h3 class="margin-b-5">js.getPaintingName()</h3>
                             </div>
-                            <img class="pics-full-width" src="{{paints.picture}}" >
+                            <img class="pics-full-width" src="{{paints.picture}}" />
                             <div class="work-popup-content-divider">
                                 <!--@ToDo redirect on artistNamePopup -->     
                                 <p class="margin-b-5"><strong> Artist:</strong><a href="artist.html"> js.getArtistName()</a></p>
@@ -146,7 +146,7 @@
             <div class="content container">
                 <div class="row">
                     <div class="col-xs-6">
-                        <img class="footer-logo" src="img/logo-dark.png" alt="Aircv Logo">
+                        <img class="footer-logo" src="img/logo-dark.png" alt="Aircv Logo"/>
                     </div>
                     <div class="col-xs-6 text-right sm-text-left">
                         <p class="margin-b-0">New Art Gallery Theme Designed&amp;Developed by: <a class="fweight-700" href="http://www.elbombdeveloper.it/">elbombdeveloper</a></p>

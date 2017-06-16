@@ -1,8 +1,12 @@
 package it.uniroma3.artGallery.service;
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
 import it.uniroma3.artGallery.model.Artist;
 import it.uniroma3.artGallery.repository.ArtistRepository;
 
@@ -16,7 +20,11 @@ public class ArtistService {
     }
 
     @Transactional
-    public void add(final Artist artist) {
+    public void add(final Artist artist,MultipartFile file) {
+    	try {
+			artist.setArtistPicture(file.getBytes());
+		} catch (IOException e) {
+		}
         this.artistRepository.save(artist);
     }
 

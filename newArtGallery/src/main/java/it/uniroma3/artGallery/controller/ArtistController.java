@@ -19,23 +19,24 @@ public class ArtistController {
 	private ArtistService artistService;
 
 // Inserimento nuovo artista -------------------------------------------------
-	@GetMapping("/artist")
+	@GetMapping("/insertArtist")
 	public String showFormArtist(Artist artist) {
-		return "formartist";
+		return "admin/formartist";
 	}
 
-	@PostMapping("/artist")
+	@PostMapping("/insertArtist")
 	public String checkArtist(@Valid @ModelAttribute Artist artist, 
 			BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
-			return "formartist";
+			return "admin/formartist";
 		}
 		else {
 			model.addAttribute(artist);
-			artistService.add(artist); 
+			model.addAttribute("immagine",artist.getFile());
+			artistService.add(artist,artist.getFile()); 
 		}
-		return "showartist";
+		return "admin/showartist";
 	}
 //-------------------------------------------------------------------------------
 
@@ -43,7 +44,7 @@ public class ArtistController {
 	@GetMapping("/artistCatalog")
 	public String showArtistCatalog(Artist artist , Model model) {
 		model.addAttribute("artists", this.artistService.findAll());
-		return "artistcatalog";
+		return "admin/artistcatalog";
 	}
 //-------------------------------------------------------------------------------
 	
@@ -51,19 +52,19 @@ public class ArtistController {
 	@GetMapping("/updateArtist")
 	public String showFormUpdateArtist(@RequestParam("idArtist") Long id,Artist artist,Model model) {
 		model.addAttribute(artistService.findbyId(id));
-		return "formupdateartist";
+		return "admin/formupdateartist";
 	}
 	
 	@PostMapping("/updateArtist")
 	public String updateArtist(@Valid @ModelAttribute Artist artist,@RequestParam("idArtist") Long id, 
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "formupdateartist";
+			return "admin/formupdateartist";
 		}
 		else {
 			model.addAttribute(artistService.update(artist,id));
 		}
-		return "showartist";
+		return "admin/showartist";
 	}
 //----------------------------------------------------------------------------------
 	
@@ -72,7 +73,7 @@ public class ArtistController {
 	public String deleteArtist(@RequestParam("idArtistD") Long id,Model model) {
 		artistService.delete(artistService.findbyId(id));
 		model.addAttribute("artists", this.artistService.findAll());
-		return "artistcatalog";
+		return "admin/artistcatalog";
 	}
 //-----------------------------------------------------------------------------------
 }

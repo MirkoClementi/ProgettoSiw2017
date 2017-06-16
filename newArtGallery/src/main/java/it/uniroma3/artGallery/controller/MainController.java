@@ -14,6 +14,10 @@ public class MainController {
     return "login";
   }
  
+  @RequestMapping("/admin")
+  public String adminLogin() {
+    return "login";
+  }
 
   // Login form with error
   @RequestMapping("/login-error.html")
@@ -21,5 +25,19 @@ public class MainController {
     model.addAttribute("loginError", true);
     return "login";
   }
-
+  
+  @RequestMapping("/artist")
+  public String artist() {
+    return "nag/artist";
+  }
+  
+  @RequestMapping("/painting")
+  public String painting() {
+    return "nag/painting";
+  }
+  
+  @RequestMapping("/adminPanel")
+  public String adminPanel() {
+    return "admin/adminpanel";
+  }
 }

@@ -3,7 +3,7 @@
 <head>
     <title>Form Artist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/viewstyle.css" rel="stylesheet"> </link>
+    <link href="css/viewstyle.css" rel="stylesheet"/>
 </head>
 <body>
 <div >
@@ -13,10 +13,10 @@
     <h2 th:text="${artistsErr}">  </h2>
 </div>
 <div class="home">
-		<a href="/index.html"> <img src="img/home.png" width="50" height="50"></img></a>
+		<a href="adminPanel"> <img src="img/home.png" width="50" height="50"/></a>
 </div>
 <div class="div-form">
-	<form action="#" th:action="@{/artist}" th:object="${artist}" method="post">
+	<form action="#" th:action="@{/insertArtist}" th:object="${artist}" method="post" enctype="multipart/form-data">
 		<div>
 			<div>
 				 <div class="label"> <span th:text="#{label.firstName}">Name: </span> </div>
@@ -42,6 +42,11 @@
 				 <div class="label"><span th:text="#{label.deadDate}">Dead Date </span> </div>
 				<span> <input type="text" th:field="*{deadDate}" /></span> 
 				<span th:if="${#fields.hasErrors('deadDate')}" th:text="#{label.date}">Error </span>
+			</div>
+			<div>
+				<div class="label"><span th:text="#{label.artistPicture}">Picture:</span></div>
+				<span><input type="file" th:field="*{file}"/></span>
+				<span th:if="${#fields.hasErrors('artistPicture')}" th:text="#{label.mandatory}">Errore</span>
 			</div>
 			<div class="div-button">
 				<span><button type="submit">Submit </button> </span>

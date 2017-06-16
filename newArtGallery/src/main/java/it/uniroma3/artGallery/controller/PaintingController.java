@@ -25,33 +25,35 @@ public class PaintingController {
 	private ArtistService artistService;
 	
 // Inserimento nuovo quadro ----------------------------------------------------
-	@GetMapping("/painting")
+	@GetMapping("/insertPainting")
 	public String showFormPainting(Painting painting ,Artist artist, Model model){
 		List<Artist> artists = (List<Artist>) this.artistService.findAll();
 		if (!artists.isEmpty()){
 				model.addAttribute("artists", artists);
-				return "formpainting";
+				return "admin/formpainting";
 		}
 		else{
 			String stringErr ="Devi prima inserire un artista";
 			model.addAttribute("artistsErr", stringErr);
-			return "formartist";
+			return "admin/formartist";
 		}
 	}
 	
-	@PostMapping("/painting")
+	@PostMapping("/insertPainting")
 	public String checkPainting(@Valid @ModelAttribute Painting painting, 
-			BindingResult bindingResult, Model model) {
+			BindingResult bindingResult, Model model,@RequestParam("artist") Long id ) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("artists", this.artistService.findAll());
-			return "formpainting";
+			return "admin/formpainting";
 		}
 		else {
+			painting.setArtist(artistService.findbyId(id));
 			model.addAttribute(painting);
-			paintingService.add(painting); 
+			model.addAttribute("immagine",painting.getFile());
+			paintingService.add(painting,painting.getFile()); 
 		}
-		return "showpainting";
+		return "admin/showpainting";
 	}
 //-------------------------------------------------------------------------------
 	
@@ -59,7 +61,7 @@ public class PaintingController {
 	@GetMapping("/paintingCatalog")
 	public String showArtistCatalog(Painting painting , Model model) {
 		model.addAttribute("paintings", this.paintingService.findAll());
-		return "paintingcatalog";
+		return "admin/paintingcatalog";
 	}
 //--------------------------------------------------------------------------------
 	
@@ -67,19 +69,19 @@ public class PaintingController {
 	@GetMapping("/updatePainting")
 	public String showFormUpdatePainting(@RequestParam("idPainting") Long id,Painting painting,Model model) {
 		model.addAttribute(paintingService.findbyId(id));
-		return "formupdatepainting";
+		return "admin/formupdatepainting";
 	}
 	
 	@PostMapping("/updatePainting")
 	public String updatePainting(@Valid @ModelAttribute Painting painting,@RequestParam("idPainting") Long id, 
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "formupdatepainting";
+			return "admin/formupdatepainting";
 		}
 		else {
 			model.addAttribute(paintingService.update(painting, id));
 		}
-		return "showpainting";
+		return "admin/showpainting";
 	}
 //---------------------------------------------------------------------------------
 	
@@ -88,7 +90,7 @@ public class PaintingController {
 	public String deletePainting(@RequestParam("idPaintingD") Long id,Model model) {
 		paintingService.delete(paintingService.findbyId(id));
 		model.addAttribute("paintings", this.paintingService.findAll());
-		return "paintingcatalog";
+		return "admin/paintingcatalog";
 	}
 }
 
