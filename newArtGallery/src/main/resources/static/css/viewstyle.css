@@ -64,6 +64,12 @@ input[value="Update"]{
     background-color: #3DA1FF;
 }
 
+input[value="View"]{
+    width: 100px;
+    font-weight: bold;
+    background-color: #81FF54;
+}
+
 .div-button{
     padding-top: 15px;
 }

@@ -17,6 +17,11 @@
 			<tr th:each="artist  : ${artists}">
 			<li>
 				<div class="label-name"> <td><span th:text="${artist.firstName}+ ' ' + ${artist.lastName}"></span>  </td></div>
+				
+				<form class="buttons" action="#" th:action="@{/showArtist}" method="post">
+					<input type="hidden" name="id" th:value="${artist.id}" /> 
+					<input type="submit" name="submit" value="View"/>
+				</form>
 
 				<form class="buttons" action="#" th:action="@{/updateArtist}" method="get">
 					<input type="hidden" name="idArtist" th:value="${artist.id}" /> 

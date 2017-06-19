@@ -26,6 +26,9 @@
 		<p th:text="'Dimension: ' + ${painting.dimension}" />
 	</div>
 	<div>
+		<p th:text="'Artist: ' + ${painting.artist.getFirstName()} + ' ' + ${painting.artist.getLastName()}" />
+	</div>
+	<div>
 	<p><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" width="150" height="150"/></p>
 	</div>
 </div>

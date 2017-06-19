@@ -55,6 +55,12 @@ public class PaintingController {
 		}
 		return "admin/showpainting";
 	}
+	
+	@PostMapping("showPainting")
+	public String showPainting(@RequestParam("id") Long id, Model model){
+			model.addAttribute(paintingService.findbyId(id));
+		return "admin/showpainting";
+	}
 //-------------------------------------------------------------------------------
 	
 //Lista di tutti i quadri -------------------------------------------------------

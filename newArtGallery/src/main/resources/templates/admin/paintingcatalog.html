@@ -18,6 +18,12 @@
 			<li>
 				<div class="label-name"> <td><span th:text="${painting.title}+ '['  + ${painting.artist.getFirstName()} + ' ' + ${painting.artist.getLastName()}  +']'" ></span> </td>
 				</div>
+				
+				<form class="buttons" action="#" th:action="@{/showPainting}" method="post">
+					<input type="hidden" name="id" th:value="${painting.id}" /> 
+					<input type="submit" name="submit" value="View"/>
+				</form>
+				
 				<form class="buttons" action="#" th:action="@{/updatePainting}" method="get">
 					<input type="hidden" name="idPainting" th:value="${painting.id}" /> 
 					<input type="submit" name="submit" value="Update"/>

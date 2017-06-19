@@ -38,6 +38,12 @@ public class ArtistController {
 		}
 		return "admin/showartist";
 	}
+	
+	@PostMapping("showArtist")
+	public String showArtist(@RequestParam("id") Long id, Model model){
+			model.addAttribute(artistService.findbyId(id));
+		return "admin/showartist";
+	}
 //-------------------------------------------------------------------------------
 
 //Lista di tutti gli artisti ----------------------------------------------------
