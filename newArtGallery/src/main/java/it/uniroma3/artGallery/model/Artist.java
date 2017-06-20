@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -48,7 +49,7 @@ public class Artist {
 	@Lob
 	private byte[] artistPicture;
 	
-	@OneToMany(mappedBy="artist" , cascade= {CascadeType.REMOVE})
+	@OneToMany(mappedBy="artist" , cascade= {CascadeType.REMOVE},fetch = FetchType.EAGER)
 	private List<Painting> paintings;
 	
 	@Transient

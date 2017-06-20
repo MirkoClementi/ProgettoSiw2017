@@ -31,6 +31,17 @@
 	<div>
 	<p><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(artist.artistPicture)}}" width="150" height="150"/></p>
 	</div>
+	<div>
+	<h4> Opere:</h4>
+	<tr th:each="painting : ${artist.paintings}">
+	<td  th:text="${painting.getTitle()}" ></td>
+		<form class="buttons" action="#" th:action="@{/showPainting}" method="post">
+			<input type="hidden" name="id" th:value="${painting.getId()}" /> 
+			<input type="submit" name="submit" value="View"/>
+		</form>
+	<br></br>
+	</tr>
+	</div>
 </div>
 </body>
 </html>
