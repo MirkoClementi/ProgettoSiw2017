@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8"/>
@@ -117,29 +117,31 @@
             </div>
             <!--============= GALLERY ========-->
             <div class="painting-container" > 
-                <div class="work work-popup-trigger" ng-repeat="paints in paintings | filter:myFilterSize|filter:myFilterTech | filter:stringFilter" >
-                    <img class="pics" src="{{paints.picture}}"  />
+            <tr th:each="painting : ${paintings}">
+                <div class="work work-popup-trigger" >
+                    <img class="pics" th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" />
+           
             <!--============= POPUP ========-->
                     <div class="work-popup-overlay">
                         <div class="work-popup-content">
                             <a href="javascript:void(0);" class="work-popup-close">Hide</a>
                             <div class="margin-b-30">
-                                <h3 class="margin-b-5">js.getPaintingName()</h3>
+                                <h3 class="margin-b-5" th:text="${painting.title}"></h3>
                             </div>
-                            <img class="pics-full-width" src="{{paints.picture}}" />
+                            <img class="pics-full-width" th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" />
                             <div class="work-popup-content-divider">
                                 <!--@ToDo redirect on artistNamePopup -->     
-                                <p class="margin-b-5"><strong> Artist:</strong><a href="artist.html"> js.getArtistName()</a></p>
-                                <p class="margin-b-5"><strong> Pubblication Date:</strong> js.getPubblicationDate()</p>
-                                <p class="margin-b-5"><strong> Technique:</strong> js.getTechnique()</p>
-                                <p class="margin-b-5"><strong> Dimension:</strong> js.getDimension()</p>
-                                <p class="margin-b-5"><strong> Style:</strong> js.getStyle()</p>
+                                <p class="margin-b-5"><strong>Artist : </strong><span th:text="${painting.artist.getLastName()}" ></span></p>
+								<p class="margin-b-5"><strong>Year : </strong><span th:text="${painting.year}" ></span></p>
+								<p class="margin-b-5"><strong>Technique : </strong><span th:text="${painting.technique}" ></span></p>
+								<p class="margin-b-5"><strong>Dimension : </strong><span th:text="${painting.dimension}" ></span></p>
                             </div> 
                         </div>
                     </div>
                 </div>
+            </tr>
             </div>
-        </div>
+         </div>
         <!-- End Filters-->
         <!--========== FOOTER ==========-->
      <footer class="footer">

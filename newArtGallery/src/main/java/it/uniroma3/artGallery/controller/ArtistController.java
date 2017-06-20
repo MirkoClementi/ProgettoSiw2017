@@ -89,4 +89,10 @@ public class ArtistController {
 		model.addAttribute("artists", this.artistService.findAll());
 		return "nag/artist";
 	}
+	
+	@RequestMapping("/artistData")
+	public String artistData(@RequestParam("id") Long id,Model model) {
+		model.addAttribute(artistService.findbyId(id));
+		return "nag/artistdata";
+	}
 }

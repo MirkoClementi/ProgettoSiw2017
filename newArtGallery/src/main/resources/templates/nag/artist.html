@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
     <!-- BEGIN HEAD -->
     <head>
         <meta charset="utf-8"/>
@@ -88,20 +88,23 @@
         
         <!--======= ARTIST GALLERY =========-->
         <!-- @ToDo to insert scripts and popup -->
-        <div class="content-artist" ng-app="myApp" ng-controller="myCtrl">
-            <div class="artist-box-content"  ng-repeat="artist in artists" >
-                <!-- @ToDo controller GET e POST methods -->
-                <a href="singleArtistWorks.html">
-                <div class="img-container-divider" > 
-                    <img class="artist-img" src="{{artist.picture}}"/> 
+        <div class="content-artist">
+        <tr th:each="artist : ${artists}"> 
+            <div class="artist-box-content">           
+                <form  action="#" th:action="@{/artistData}" method="post">
+					<input type="hidden" name="id" th:value="${artist.id}" /> 
+					<input type="submit" name="submit" value="View"/>
+				</form>
+                <div class="img-container-divider" >
+                <img class="artist-img" th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(artist.artistPicture)}}"/>
                 </div>
                 <div class="description-block">
-                    <p class="margin-b-5"><strong> Name:</strong> {{artist.first_name}}</p>
+                    <p class="margin-b-5" th:text="'First name: ' + ${artist.firstName}"></p>
                     <p class="description"> descrizione dell autore , tecniche preferite
                     epoca di appartenenza link a wikipedia (?!)</p>
                 </div>
-                </a>
             </div>
+        </tr>
         </div>
         <!-- END ARTIST GALLERY =====-->
       
