@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.artGallery.model.Artist;
@@ -97,6 +98,13 @@ public class PaintingController {
 		paintingService.delete(paintingService.findbyId(id));
 		model.addAttribute("paintings", this.paintingService.findAll());
 		return "admin/paintingcatalog";
+	}
+	
+
+	@RequestMapping("/painting")
+	public String painting(Model model) {
+		model.addAttribute("paintings", this.paintingService.findAll());
+		return "nag/painting";
 	}
 }
 

@@ -39,16 +39,6 @@ public class MainController {
 		return "login";
 	}
 
-	@RequestMapping("/artist")
-	public String artist() {
-		return "nag/artist";
-	}
-
-	@RequestMapping("/painting")
-	public String painting() {
-		return "nag/painting";
-	}
-
 	@RequestMapping("/adminPanel")
 	public String adminPanel() {
 		return "admin/adminpanel";

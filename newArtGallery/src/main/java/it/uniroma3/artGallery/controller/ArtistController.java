@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.artGallery.model.Artist;
@@ -18,7 +19,7 @@ public class ArtistController {
 	@Autowired
 	private ArtistService artistService;
 
-// Inserimento nuovo artista -------------------------------------------------
+	// Inserimento nuovo artista -------------------------------------------------
 	@GetMapping("/insertArtist")
 	public String showFormArtist(Artist artist) {
 		return "admin/formartist";
@@ -38,29 +39,29 @@ public class ArtistController {
 		}
 		return "admin/showartist";
 	}
-	
+
 	@PostMapping("showArtist")
 	public String showArtist(@RequestParam("id") Long id, Model model){
-			model.addAttribute(artistService.findbyId(id));
+		model.addAttribute(artistService.findbyId(id));
 		return "admin/showartist";
 	}
-//-------------------------------------------------------------------------------
+	//-------------------------------------------------------------------------------
 
-//Lista di tutti gli artisti ----------------------------------------------------
+	//Lista di tutti gli artisti ----------------------------------------------------
 	@GetMapping("/artistCatalog")
 	public String showArtistCatalog(Artist artist , Model model) {
 		model.addAttribute("artists", this.artistService.findAll());
 		return "admin/artistcatalog";
 	}
-//-------------------------------------------------------------------------------
-	
-//Aggiornamento dati artista ----------------------------------------------------
+	//-------------------------------------------------------------------------------
+
+	//Aggiornamento dati artista ----------------------------------------------------
 	@GetMapping("/updateArtist")
 	public String showFormUpdateArtist(@RequestParam("idArtist") Long id,Artist artist,Model model) {
 		model.addAttribute(artistService.findbyId(id));
 		return "admin/formupdateartist";
 	}
-	
+
 	@PostMapping("/updateArtist")
 	public String updateArtist(@Valid @ModelAttribute Artist artist,@RequestParam("idArtist") Long id, 
 			BindingResult bindingResult, Model model) {
@@ -72,14 +73,20 @@ public class ArtistController {
 		}
 		return "admin/showartist";
 	}
-//----------------------------------------------------------------------------------
-	
-//Cancellazione artista ------------------------------------------------------------
+	//----------------------------------------------------------------------------------
+
+	//Cancellazione artista ------------------------------------------------------------
 	@PostMapping("/deleteArtist")
 	public String deleteArtist(@RequestParam("idArtistD") Long id,Model model) {
 		artistService.delete(artistService.findbyId(id));
 		model.addAttribute("artists", this.artistService.findAll());
 		return "admin/artistcatalog";
 	}
-//-----------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	@RequestMapping("/artist")
+	public String artist(Model model) {
+		model.addAttribute("artists", this.artistService.findAll());
+		return "nag/artist";
+	}
 }
