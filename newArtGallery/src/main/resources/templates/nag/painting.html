@@ -87,40 +87,17 @@
             </div>
         </div>
         <!-- ========== FILTERS ========-->
-        <div class="content-painting" ng-app="myApp" ng-controller="myCtrl">
+        <div class="content-painting" >
             <div class="filter-box-container" >
                 <div class="search-divider"> 
-                    <!-- @ToDo filter for paint's name|| artist's name -->
-                    <input class="input-filter" type="text" name="nametitle-filter" id="nametitle-filter" placeholder="Search for Artist or title..." ng-model="NameTitleFilter"/>
-                </div>
-                <div class="filter-row-type">
-                    <h5>Technique</h5>
-                    <div class="filter-col" ng-repeat="pic in paintingsArrayTech| unique:'technique' "> 
-                        <!-- @ToDo Inserire le varie tecniche -->
-                        <input type="checkbox" value="technique" ng-model="pic.on"  ng-change="checkChange()" /> {{pic.technique}}<br></br>
-                    </div>
-                </div>
-                <div class="filter-row-type">
-                    <h5>Size</h5>
-                    <div class="filter-col" ng-repeat="pic in paintingsArraySize | unique:'dimension' ">   
-                        <!-- @ToDo Inserire le varie dimensioni -->
-                        <input type="checkbox" value="dimension" ng-model="pic.on"  ng-change="checkChange()" /> {{pic.dimension}}<br></br>
-                    </div>
-                </div>
-                <div class="filter-row-type">
-                    <h5>Year</h5>
-                    <div class="filter-col" ng-repeat="pic in paintingsArrayAge | unique:'year'" >
-                        <!-- @ToDo Inserire le varie epoche -->
-                        <input type="checkbox" value="year" ng-model="pic.on"  ng-change="checkChange()" /> {{pic.year}}<br>  </br>
-                    </div>
+                    <input class="input-filter" type="text" onkeyup="myFunction()" id="nameFilter" placeholder="Search for Artist or title..." />
                 </div>
             </div>
             <!--============= GALLERY ========-->
-            <div class="painting-container" > 
+            <div class="painting-container" id="paintingContainer"> 
             <tr th:each="painting : ${paintings}">
                 <div class="work work-popup-trigger" >
-                    <img class="pics" th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" />
-           
+                    <img class="pics" th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" th:id="${painting.artist.getFirstName()}"/>
             <!--============= POPUP ========-->
                     <div class="work-popup-overlay">
                         <div class="work-popup-content">
@@ -184,7 +161,7 @@
         <script src="js/components/masonry.min.js" type="text/javascript"></script>
         <script src="js/components/wow.min.js" type="text/javascript"></script>
         
-        <script src="js/components/trial-filter.js" type="text/javascript"></script>
+        <script src="js/components/filters.js" type="text/javascript"></script>
     </body>
     <!-- END BODY -->
 </html>

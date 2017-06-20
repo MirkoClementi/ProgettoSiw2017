@@ -929,7 +929,7 @@ fieldset[disabled] .btn-theme {
 }
 .artist-box-content{ 
     float: left;
-    margin:20px 0px 10px 20px;
+    margin:20px 10px 10px 20px;
     width: 16%;
     height: auto;
     border: 1px solid #515769;
@@ -938,9 +938,18 @@ fieldset[disabled] .btn-theme {
 }
 
 .artist-box-content:hover {
-      box-shadow: 1px 1px 10px #515769;  
+      box-shadow: 1px 1px 10px #0080FF;  
 } 
 
+input[value="View"] {
+	background-color: #82C0FF;
+	font-weight: bold;	
+}
+
+.form {
+	float:left;
+	padding:none;
+}
 /* --- CSS Property blur effect ---*/
  /*
     background-image: url("../img/397x300/03.jpg");
@@ -1026,7 +1035,7 @@ fieldset[disabled] .btn-theme {
 
 .pics-full-width {
     float: left;
-    width:70%;
+    width:50%;
 }
 
 .work .work-popup-content-divider {

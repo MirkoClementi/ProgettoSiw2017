@@ -16,7 +16,7 @@
 	<div id="wrapper">
 		<!-- Header -->
 		<header id="header">
-			<span class="avatar"><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(artist.artistPicture)}}" width="173" height="178"/></span>
+			<span class="avatar"><img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(artist.artistPicture)}}" class="avatarimg" /></span>
 			<div class="col">
 				<p class="margin-b-5"><strong>FirstName : </strong><span th:text="${artist.firstName}" ></span></p>
 				<p class="margin-b-5"><strong>LastName : </strong><span th:text="${artist.lastName}" ></span></p>
@@ -28,12 +28,12 @@
 		<!-- Main -->
 		<section id="main" class="section">
 			<tr th:each="painting : ${artist.paintings}">
-			<section class="thumbnails">
-			<div>
-				<img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" width="150" height="150"/>
+			<div class="thumbnails">
+			<div class="image">
+				<img th:src="@{'data:image/jpg;base64,' + *{T(org.springframework.util.Base64Utils).encodeToString(painting.paintingPicture)}}" width="300" height="200"/>
 				<h3 th:text="${painting.getTitle()}"></h3>
 			</div>
-			</section>
+			</div>
 			</tr>
 		</section>
 
